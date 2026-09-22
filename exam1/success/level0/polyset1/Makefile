@@ -1,0 +1,39 @@
+# Compiler
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++17
+
+# Source files
+SRCS = \
+array_bag.cpp \
+tree_bag.cpp \
+searchable_array_bag.cpp \
+searchable_tree_bag.cpp \
+set.cpp \
+main.cpp
+
+# Object files
+OBJS = $(SRCS:.cpp=.o)
+
+# Executable name
+TARGET = polyset
+
+# Default rule
+all: $(TARGET)
+
+# Link
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# Compile
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Clean
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(TARGET)
+
+# Rebuild
+re: clean all
